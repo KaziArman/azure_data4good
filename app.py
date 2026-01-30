@@ -86,7 +86,7 @@ def parse_llm_json(text: str):
         return "unknown", text.strip()
 
 def hf_llm_judge(question: str, context: str, answer: str, judge_model: str):
-    token = st.secrets.get("HF_TOKEN")
+    token = os.environ.get("HF_TOKEN") or st.secrets.get("HF_TOKEN")
     if not token:
         raise ValueError("HF_TOKEN missing in Streamlit secrets")
 
@@ -178,4 +178,5 @@ if st.button("Judge with LLM"):
     except Exception as e:
 
         st.error(f"LLM judge failed:\n\n{e}")
+
 
