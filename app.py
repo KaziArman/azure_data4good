@@ -12,14 +12,14 @@ st.title("QCA Classifier (Azure Hosted)")
 # Configuration & Secrets
 # ----------------------------
 # These should be set in Azure App Service "Environment Variables"
-try:
-    SCORING_URI = os.environ.get("AZURE_ML_SCORING_URI")
-    AZURE_ML_KEY = os.environ.get("AZURE_ML_API_KEY")
-    HF_TOKEN = os.environ.get("HF_TOKEN")
-except:
-    SCORING_URI = st.secrets.get("AZURE_ML_SCORING_URI")
-    AZURE_ML_KEY = st.secrets.get("AZURE_ML_API_KEY")
-    #HF_TOKEN = st.secrets.get("HF_TOKEN")
+#try:
+SCORING_URI = os.environ.get("AZURE_ML_SCORING_URI")
+AZURE_ML_KEY = os.environ.get("AZURE_ML_API_KEY")
+HF_TOKEN = os.environ.get("HF_TOKEN")
+#except:
+#SCORING_URI = st.secrets.get("AZURE_ML_SCORING_URI")
+#AZURE_ML_KEY = st.secrets.get("AZURE_ML_API_KEY")
+#HF_TOKEN = st.secrets.get("HF_TOKEN")
 
 LABELS = ["contradiction", "factual", "irrelevant"]
 DEFAULT_JUDGE_MODEL = "mistralai/Mistral-7B-Instruct-v0.2"
@@ -178,3 +178,4 @@ if st.button("Judge with LLM"):
     except Exception as e:
 
         st.error(f"LLM judge failed:\n\n{e}")
+
